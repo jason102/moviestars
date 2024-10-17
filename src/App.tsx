@@ -1,5 +1,13 @@
+import NavBar from "./NavBar";
+import Home from "./pages/Home";
+
 function App() {
-  return <div>Hello</div>;
+  return (
+    <>
+      <NavBar />
+      <Home />
+    </>
+  );
 }
 
 export default App;
