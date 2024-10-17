@@ -6,7 +6,7 @@ const Home: React.FC = () => {
   return (
     <Box component="main" sx={{ p: 3 }}>
       <Toolbar />
-      <Typography>Main are content</Typography>
+      <Typography variant="h5">Celebrities</Typography>
     </Box>
   );
 };
