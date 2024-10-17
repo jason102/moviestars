@@ -33,6 +33,7 @@ const CelebrityFetcherProvider: React.FC<Props> = ({ children }) => {
 
   const fetchCelebrities = async () => {
     setLoading(true);
+    setError("");
 
     try {
       const response = await fetch(
@@ -49,7 +50,6 @@ const CelebrityFetcherProvider: React.FC<Props> = ({ children }) => {
 
       console.log(apiData);
     } catch (err) {
-      console.log({ err });
       setError(err.message);
     } finally {
       setLoading(false);
