@@ -16,7 +16,7 @@ interface KnownFor {
   vote_count: number;
 }
 
-interface TheMoveDBApiResponseCelebrity {
+export interface Celebrity {
   adult: boolean;
   gender: number;
   id: number;
@@ -30,9 +30,5 @@ interface TheMoveDBApiResponseCelebrity {
 
 export interface TheMoveDBApiResponse {
   page: number;
-  results: TheMoveDBApiResponseCelebrity[];
-}
-
-export interface Celebrity {
-  name: string;
+  results: Celebrity[];
 }

@@ -23,14 +23,17 @@ export const useFetchDebouncedCelebrities = () => {
   const fetchCelebrities = useCallback(async () => {
     setLoading(true);
     setError("");
-    console.log("SEARCHING for " + debouncedQuery);
+
     try {
       const response = await fetch(getFetchUrl(debouncedQuery));
+
       if (!response.ok) {
         throw new Error(`Ooops, something went wrong: ${response.statusText}`);
       }
+
       const apiData: TheMoveDBApiResponse = await response.json();
-      console.log(apiData);
+
+      setCelebrities(apiData.results);
     } catch (err) {
       setError(err.message);
     } finally {
