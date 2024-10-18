@@ -1,4 +1,4 @@
-import { Celebrity } from "../../types";
+import { Celebrity } from "../../../types";
 
 import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";

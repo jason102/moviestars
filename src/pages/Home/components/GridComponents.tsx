@@ -1,5 +1,5 @@
 import { forwardRef, Ref, useContext } from "react";
-import { CelebrityFetcherContext } from "../../CelebrityFetcherContext";
+import { CelebrityFetcherContext } from "../../../CelebrityFetcherContext";
 
 import Box from "@mui/material/Box";
 

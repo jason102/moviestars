@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { VirtuosoGrid } from "react-virtuoso";
-import { CelebrityFetcherContext } from "../CelebrityFetcherContext";
+import { CelebrityFetcherContext } from "../../CelebrityFetcherContext";
 import GridComponents from "./components/GridComponents";
 import CelebrityCard from "./components/CelebrityCard";
 
