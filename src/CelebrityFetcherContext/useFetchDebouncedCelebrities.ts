@@ -35,7 +35,8 @@ export const useFetchDebouncedCelebrities = () => {
 
       setCelebrities(apiData.results);
     } catch (err) {
-      setError(err.message);
+      const typedError = err as Error;
+      setError(typedError.message);
     } finally {
       setLoading(false);
     }
