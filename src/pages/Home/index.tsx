@@ -1,8 +1,10 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { VirtuosoGrid } from "react-virtuoso";
 import { CelebrityFetcherContext } from "../../CelebrityFetcherContext";
 import GridComponents from "./components/GridComponents";
 import CelebrityCard from "./components/CelebrityCard";
+import CelebrityModal from "./components/CelebrityModal";
+import { Celebrity } from "../../types";
 
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -13,31 +15,45 @@ const Home: React.FC = () => {
     CelebrityFetcherContext
   );
 
+  const [selectedCelebrity, setSelectedCelebrity] = useState<Celebrity | null>(
+    null
+  );
+
   return (
-    <Box component="main" sx={{ p: 3 }}>
-      {/* <Toolbar /> is used for top padding as the <NavBar /> (AppBar) floats above the content (as recommended in MUI docs) */}
-      <Toolbar />
-      <Typography variant="h5">Celebrities</Typography>
-      <Box
-        sx={{
-          display: "flex",
-          flex: 1,
-          height: "calc(100vh - 145px)",
-          backgroundColor: "green",
-        }}
-      >
-        <VirtuosoGrid
-          style={{ height: "100%", width: "100%" }}
-          totalCount={celebrities.length}
-          data={celebrities}
-          endReached={loadMoreCelebrities}
-          components={GridComponents}
-          itemContent={(_, celebrity) => (
-            <CelebrityCard celebrity={celebrity} />
-          )}
-        />
+    <>
+      <Box component="main" sx={{ p: 3 }}>
+        {/* <Toolbar /> is used for top padding as the <NavBar /> (AppBar) floats above the content (as recommended in MUI docs) */}
+        <Toolbar />
+        <Typography variant="h5" sx={{ marginBottom: 2 }}>
+          Celebrities
+        </Typography>
+        <Box
+          sx={{
+            display: "flex",
+            flex: 1,
+            height: "calc(100vh - 144px)",
+          }}
+        >
+          <VirtuosoGrid
+            style={{ height: "100%", width: "100%" }}
+            totalCount={celebrities.length}
+            data={celebrities}
+            endReached={loadMoreCelebrities}
+            components={GridComponents}
+            itemContent={(_, celebrity) => (
+              <CelebrityCard
+                celebrity={celebrity}
+                setSelectedCelebrity={setSelectedCelebrity}
+              />
+            )}
+          />
+        </Box>
       </Box>
-    </Box>
+      <CelebrityModal
+        selectedCelebrity={selectedCelebrity}
+        setSelectedCelebrity={setSelectedCelebrity}
+      />
+    </>
   );
 };
 

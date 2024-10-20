@@ -1,14 +1,15 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { TheMoveDBApiResponse, Celebrity } from "../types";
+import { THE_MOVIE_DB_DOMAIN_URL } from "../utils";
 
 const getFetchUrl = (query: string, page: number) => {
   if (query) {
-    return `https://api.themoviedb.org/3/search/person?api_key=${
+    return `${THE_MOVIE_DB_DOMAIN_URL}search/person?api_key=${
       import.meta.env.VITE_THE_MOVIE_DB_API_KEY
     }&query=${query}&page=${page}`;
   }
 
-  return `https://api.themoviedb.org/3/person/popular?api_key=${
+  return `${THE_MOVIE_DB_DOMAIN_URL}person/popular?api_key=${
     import.meta.env.VITE_THE_MOVIE_DB_API_KEY
   }&page=${page}`;
 };
