@@ -51,10 +51,12 @@ const CelebrityModal: React.FC<Props> = ({
             />
           </Box>
           <Box sx={{ display: "flex", flex: 1, mt: 2 }}>
-            <Box
-              component="img"
-              src={`${THE_MOVIE_DB_IMAGE_DOMAIN_URL}${selectedCelebrity?.profile_path}`}
-            />
+            {selectedCelebrity?.profile_path && (
+              <Box
+                component="img"
+                src={`${THE_MOVIE_DB_IMAGE_DOMAIN_URL}${selectedCelebrity?.profile_path}`}
+              />
+            )}
             <Box sx={{ ml: 3 }}>
               <Typography>
                 <Typography component="span" fontWeight="bold">

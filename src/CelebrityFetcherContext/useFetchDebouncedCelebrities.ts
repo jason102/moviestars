@@ -41,12 +41,16 @@ export const useFetchDebouncedCelebrities = () => {
 
         const apiData: TheMoveDBApiResponse = await response.json();
 
+        const celebritiesWithData = apiData.results.filter(
+          (celebrity) => celebrity.gender !== 0
+        );
+
         if (resetPage) {
-          setCelebrities(apiData.results);
+          setCelebrities(celebritiesWithData);
         } else {
           setCelebrities((previousCelebrities) => [
             ...previousCelebrities,
-            ...apiData.results,
+            ...celebritiesWithData,
           ]);
         }
 
