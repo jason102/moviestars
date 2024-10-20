@@ -31,4 +31,6 @@ export interface Celebrity {
 export interface TheMoveDBApiResponse {
   page: number;
   results: Celebrity[];
+  total_pages: number;
+  total_results: number;
 }

@@ -9,7 +9,9 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 
 const Home: React.FC = () => {
-  const { celebrities } = useContext(CelebrityFetcherContext);
+  const { celebrities, loadMoreCelebrities } = useContext(
+    CelebrityFetcherContext
+  );
 
   return (
     <Box component="main" sx={{ p: 3 }}>
@@ -28,7 +30,7 @@ const Home: React.FC = () => {
           style={{ height: "100%", width: "100%" }}
           totalCount={celebrities.length}
           data={celebrities}
-          // endReached={loadMore}
+          endReached={loadMoreCelebrities}
           components={GridComponents}
           itemContent={(_, celebrity) => (
             <CelebrityCard celebrity={celebrity} />
