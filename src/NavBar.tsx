@@ -6,6 +6,8 @@ import Toolbar from "@mui/material/Toolbar";
 import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
+import SearchIcon from "@mui/icons-material/Search";
+import InputAdornment from "@mui/material/InputAdornment";
 
 const NavBar: React.FC = () => {
   const { query, setQuery } = useContext(CelebrityFetcherContext);
@@ -36,6 +38,15 @@ const NavBar: React.FC = () => {
             placeholder="Search for a celebrity"
             value={query}
             onChange={({ target }) => setQuery(target.value)}
+            slotProps={{
+              input: {
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <SearchIcon sx={{ color: "lightgray" }} />
+                  </InputAdornment>
+                ),
+              },
+            }}
           />
         </Box>
       </Toolbar>
