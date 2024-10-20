@@ -22,31 +22,28 @@ const CelebrityCard: React.FC<Props> = ({
 }) => {
   // Breakpoints for responsiveness
   const theme = useTheme();
-  const isSm = useMediaQuery(theme.breakpoints.only("sm"));
-  const isMd = useMediaQuery(theme.breakpoints.only("md"));
-  const isLg = useMediaQuery(theme.breakpoints.only("lg"));
-  const isXl = useMediaQuery(theme.breakpoints.only("xl"));
-
-  // Define card width
-  let cardWidth = "300px"; // xs
-  if (isSm) cardWidth = "200px";
-  if (isMd) cardWidth = "200px";
-  if (isLg) cardWidth = "200px";
-  if (isXl) cardWidth = "200px";
+  const isXs = useMediaQuery(theme.breakpoints.only("xs"));
+  const cardWidth = isXs ? 160 : 200;
+  const cardHeight = isXs ? 300 : 360;
+  const imageHeight = isXs ? 240 : 300;
 
   return (
     <Card
-      style={{ width: cardWidth, height: 360, borderRadius: 12 }}
+      style={{ width: cardWidth, height: cardHeight, borderRadius: 12 }}
       elevation={2}
     >
       <CardActionArea onClick={() => setSelectedCelebrity(celebrity)}>
         <CardMedia
-          sx={{ height: 300, width: 200 }}
+          sx={{ height: imageHeight, width: cardWidth }}
           image={`${THE_MOVIE_DB_IMAGE_DOMAIN_URL}${celebrity.profile_path}`}
           title={celebrity.name}
         />
         <CardContent>
-          <Typography variant="body1" textAlign="center" fontWeight="bold">
+          <Typography
+            variant={isXs ? "body2" : "body1"}
+            textAlign="center"
+            fontWeight="bold"
+          >
             {celebrity.name}
           </Typography>
         </CardContent>
