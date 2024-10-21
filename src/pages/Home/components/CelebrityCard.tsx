@@ -30,13 +30,29 @@ const CelebrityCard: React.FC<Props> = ({
       elevation={2}
     >
       <CardActionArea onClick={() => setSelectedCelebrity(celebrity)}>
-        <CardMedia
-          sx={{ height: imageHeight, width: cardWidth }}
-          image={`${THE_MOVIE_DB_IMAGE_DOMAIN_URL}${celebrity.profile_path}`}
-          title={celebrity.name}
-          component="img"
-          alt={`Profile picture of ${celebrity.name}`}
-        />
+        {celebrity?.profile_path ? (
+          <CardMedia
+            sx={{ height: imageHeight, width: cardWidth }}
+            image={`${THE_MOVIE_DB_IMAGE_DOMAIN_URL}${celebrity?.profile_path}`}
+            title={celebrity.name}
+            component="img"
+            alt={`Profile picture of ${celebrity.name}`}
+          />
+        ) : (
+          <CardMedia
+            sx={{
+              height: imageHeight,
+              width: cardWidth,
+              display: "flex",
+              flex: 1,
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+            title={celebrity.name}
+          >
+            <Typography>No Image</Typography>
+          </CardMedia>
+        )}
         <CardContent>
           <Typography
             variant={isSmallScreenSize ? "body2" : "body1"}
