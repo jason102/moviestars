@@ -37,6 +37,7 @@ const mockedHookData = {
   query: "",
   setQuery: vi.fn(),
   loadMoreCelebrities: vi.fn(),
+  fetchCelebrities: vi.fn(),
 };
 
 describe("Home page", () => {
@@ -97,5 +98,25 @@ describe("Home page", () => {
     expect(popularity).not.toBeVisible();
     expect(popularityValue).not.toBeVisible();
     expect(oblivionMovie).not.toBeVisible();
+  });
+
+  it("shows any error and allows the user to retry if they choose", async () => {
+    const fetchCelebrities = vi.fn();
+    vi.spyOn(
+      useFetchDebouncedCelebrities,
+      "useFetchDebouncedCelebrities"
+    ).mockReturnValue({
+      ...mockedHookData,
+      fetchCelebrities,
+      error: "Something happened",
+    });
+
+    renderHomePage();
+
+    expect(await screen.findByText("Something happened")).toBeVisible();
+
+    await userEvent.click(screen.getByText("RETRY"));
+
+    expect(fetchCelebrities).toHaveBeenCalledOnce();
   });
 });
