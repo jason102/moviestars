@@ -41,6 +41,7 @@ export const useFetchDebouncedCelebrities = () => {
 
         const apiData: TheMoveDBApiResponse = await response.json();
 
+        // Maybe there are other ways to know if it's a "junk" profile, but checking the gender seems to be one way
         const celebritiesWithData = apiData.results.filter(
           (celebrity) => celebrity.gender !== 0
         );
