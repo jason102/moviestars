@@ -18,6 +18,15 @@ const CelebrityModal: React.FC<Props> = ({
   setSelectedCelebrity,
 }) => {
   const isSmallScreenSize = useResponsiveDesign();
+  const containerSharedStyles = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    bgcolor: "background.paper",
+    boxShadow: 24,
+    p: 4,
+  };
 
   return (
     <Modal
@@ -30,24 +39,12 @@ const CelebrityModal: React.FC<Props> = ({
         sx={
           isSmallScreenSize
             ? {
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
+                ...containerSharedStyles,
                 width: 300,
-                bgcolor: "background.paper",
-                boxShadow: 24,
-                p: 4,
               }
             : {
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
+                ...containerSharedStyles,
                 width: 800,
-                bgcolor: "background.paper",
-                boxShadow: 24,
-                p: 4,
               }
         }
       >
