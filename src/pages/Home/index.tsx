@@ -5,6 +5,7 @@ import GridComponents from "./components/GridComponents";
 import CelebrityCard from "./components/CelebrityCard";
 import CelebrityModal from "./components/CelebrityModal";
 import { Celebrity } from "../../types";
+import { useResponsiveDesign } from "../../useResponsiveDesign";
 
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -15,6 +16,8 @@ const Home: React.FC = () => {
     CelebrityFetcherContext
   );
 
+  const isSmallScreenSize = useResponsiveDesign();
+
   const [selectedCelebrity, setSelectedCelebrity] = useState<Celebrity | null>(
     null
   );
@@ -23,7 +26,7 @@ const Home: React.FC = () => {
     <>
       <Box component="main" sx={{ p: 3 }}>
         {/* <Toolbar /> is used for top padding as the <NavBar /> (AppBar) floats above the content (as recommended in MUI docs) */}
-        <Toolbar />
+        {isSmallScreenSize ? <Box sx={{ height: 90 }} /> : <Toolbar />}
         <Typography variant="h5" sx={{ marginBottom: 2 }}>
           Celebrities
         </Typography>

@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { CelebrityFetcherContext } from "./CelebrityFetcherContext";
+import { useResponsiveDesign } from "./useResponsiveDesign";
 
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -12,16 +13,29 @@ import InputAdornment from "@mui/material/InputAdornment";
 const NavBar: React.FC = () => {
   const { query, setQuery } = useContext(CelebrityFetcherContext);
 
+  const isSmallScreenSize = useResponsiveDesign();
+
   return (
     <AppBar>
       <Toolbar>
         <Box
-          sx={{
-            display: "flex",
-            flex: 1,
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
+          sx={
+            isSmallScreenSize
+              ? {
+                  display: "flex",
+                  flex: 1,
+                  flexDirection: "column",
+                  alignItems: "center",
+                  mt: 1,
+                  mb: 1,
+                }
+              : {
+                  display: "flex",
+                  flex: 1,
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }
+          }
         >
           <Link href={"https://chartmetric.com/"}>
             <Box
@@ -47,6 +61,7 @@ const NavBar: React.FC = () => {
                 ),
               },
             }}
+            fullWidth={isSmallScreenSize}
           />
         </Box>
       </Toolbar>

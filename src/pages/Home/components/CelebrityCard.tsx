@@ -1,6 +1,7 @@
 import { Dispatch } from "react";
 import { Celebrity } from "../../../types";
 import { THE_MOVIE_DB_IMAGE_DOMAIN_URL } from "../../../utils";
+import { useResponsiveDesign } from "../../../useResponsiveDesign";
 
 import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";
@@ -8,8 +9,6 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import CardActionArea from "@mui/material/CardActionArea";
 import Box from "@mui/material/Box";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import useTheme from "@mui/material/styles/useTheme";
 
 interface Props {
   celebrity: Celebrity;
@@ -20,12 +19,10 @@ const CelebrityCard: React.FC<Props> = ({
   celebrity,
   setSelectedCelebrity,
 }) => {
-  // Breakpoints for responsiveness
-  const theme = useTheme();
-  const isXs = useMediaQuery(theme.breakpoints.only("xs"));
-  const cardWidth = isXs ? 160 : 200;
-  const cardHeight = isXs ? 300 : 360;
-  const imageHeight = isXs ? 240 : 300;
+  const isSmallScreenSize = useResponsiveDesign();
+  const cardWidth = isSmallScreenSize ? 160 : 200;
+  const cardHeight = isSmallScreenSize ? 300 : 360;
+  const imageHeight = isSmallScreenSize ? 240 : 300;
 
   return (
     <Card
@@ -40,7 +37,7 @@ const CelebrityCard: React.FC<Props> = ({
         />
         <CardContent>
           <Typography
-            variant={isXs ? "body2" : "body1"}
+            variant={isSmallScreenSize ? "body2" : "body1"}
             textAlign="center"
             fontWeight="bold"
           >
