@@ -6,6 +6,7 @@ import { useResponsiveDesign } from "../../../useResponsiveDesign";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 
 interface Props {
@@ -52,16 +53,22 @@ const CelebrityModal: React.FC<Props> = ({
           <Box
             sx={{ display: "flex", flex: 1, justifyContent: "space-between" }}
           >
-            <Typography variant="h5">{selectedCelebrity?.name}</Typography>
-            <CloseIcon
-              sx={{
-                color: "gray",
-                borderStyle: "solid",
-                borderWidth: 1,
-                borderColor: "gray",
-              }}
+            <Typography id="modal-modal-title" variant="h5">
+              {selectedCelebrity?.name}
+            </Typography>
+            <IconButton
+              aria-label="Close"
               onClick={() => setSelectedCelebrity(null)}
-            />
+            >
+              <CloseIcon
+                sx={{
+                  color: "gray",
+                  borderStyle: "solid",
+                  borderWidth: 1,
+                  borderColor: "gray",
+                }}
+              />
+            </IconButton>
           </Box>
           <Box
             sx={{
@@ -76,6 +83,7 @@ const CelebrityModal: React.FC<Props> = ({
               <Box
                 component="img"
                 src={`${THE_MOVIE_DB_IMAGE_DOMAIN_URL}${selectedCelebrity?.profile_path}`}
+                alt={`Profile image for ${selectedCelebrity?.name}`}
                 sx={{
                   width: isSmallScreenSize ? 200 : undefined,
                   height: isSmallScreenSize ? 257 : undefined,
@@ -115,6 +123,7 @@ const CelebrityModal: React.FC<Props> = ({
                     <Box
                       component="img"
                       src={`${THE_MOVIE_DB_IMAGE_DOMAIN_URL}${item.poster_path}`}
+                      alt={`Known for: ${item?.title ?? item?.name}`}
                       sx={{ width: 60, height: 90 }}
                     />
                     <Typography sx={{ ml: 1 }} fontWeight="bold">

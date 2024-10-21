@@ -16,7 +16,7 @@ const NavBar: React.FC = () => {
   const isSmallScreenSize = useResponsiveDesign();
 
   return (
-    <AppBar>
+    <AppBar role="navigation">
       <Toolbar>
         <Box
           sx={
@@ -43,9 +43,12 @@ const NavBar: React.FC = () => {
               src="./src/assets/CM_logo.svg"
               width={180}
               height={40}
+              alt="Chartmetric logo"
             />
           </Link>
           <TextField
+            id="celebrity-search"
+            aria-label="Search for a celebrity"
             variant="outlined"
             sx={{ backgroundColor: "white" }}
             size="small"

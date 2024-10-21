@@ -34,6 +34,8 @@ const CelebrityCard: React.FC<Props> = ({
           sx={{ height: imageHeight, width: cardWidth }}
           image={`${THE_MOVIE_DB_IMAGE_DOMAIN_URL}${celebrity.profile_path}`}
           title={celebrity.name}
+          component="img"
+          alt={`Profile picture of ${celebrity.name}`}
         />
         <CardContent>
           <Typography
