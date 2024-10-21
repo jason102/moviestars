@@ -1,50 +1,25 @@
-# React + TypeScript + Vite
+# Celebrities browser app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a demo app written using TypeScript/React/Vite that allows the user to browse [The Movie DB](https://www.themoviedb.org/) celebrities.
 
-Currently, two official plugins are available:
+In addition to displaying the most popular celebrities and supporting searching for specific ones by name, the fetched list of celebrities is paginated. You can also click on specific celebrities to view more info about them. Lastly, the app is responsive and should work well with both mobile and desktop layouts.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Running the app locally
 
-## Expanding the ESLint configuration
+1. In the root directory of the project run `npm install` to install the dependencies.
+2. Create a `.env.local` file in the root directory and add the following environment variable with your local testing The Movie DB API key (replace `XXXXXXX`):
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```
+VITE_THE_MOVIE_DB_API_KEY=XXXXXXX
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+3. Run `npm run dev` to run the app on localhost. The app should be available at the default Vite server port at http://localhost:5173/
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Building the app for production
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+1. Create a `.env.production` file in the root directory of the project and specify your production environment API key the same way the `.env.local` file was configured.
+2. Build the app using `npm run build`. The files in the generated `dist` directory can be uploaded to your hosting provider.
+
+## Running the test cases
+
+Run `npm run test` to run some example test cases using Vitest and React Testing Library.
