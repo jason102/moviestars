@@ -10,11 +10,12 @@ import { useResponsiveDesign } from "../../useResponsiveDesign";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import Alert from "@mui/material/Alert";
+import Button from "@mui/material/Button";
 
 const Home: React.FC = () => {
-  const { celebrities, loadMoreCelebrities } = useContext(
-    CelebrityFetcherContext
-  );
+  const { celebrities, loadMoreCelebrities, error, fetchCelebrities } =
+    useContext(CelebrityFetcherContext);
 
   const isSmallScreenSize = useResponsiveDesign();
 
@@ -30,6 +31,19 @@ const Home: React.FC = () => {
         <Typography variant="h5" sx={{ marginBottom: 2 }}>
           Celebrities
         </Typography>
+        {error && (
+          <Alert
+            variant="filled"
+            severity="error"
+            action={
+              <Button color="inherit" size="small" onClick={fetchCelebrities}>
+                RETRY
+              </Button>
+            }
+          >
+            {error}
+          </Alert>
+        )}
         <Box
           sx={{
             display: "flex",

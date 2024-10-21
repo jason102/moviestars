@@ -94,5 +94,13 @@ export const useFetchDebouncedCelebrities = () => {
     }
   };
 
-  return { celebrities, loading, error, query, setQuery, loadMoreCelebrities };
+  return {
+    celebrities,
+    loading,
+    error,
+    query,
+    setQuery,
+    loadMoreCelebrities,
+    fetchCelebrities,
+  };
 };

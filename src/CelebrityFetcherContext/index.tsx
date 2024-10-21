@@ -9,6 +9,7 @@ interface CelebrityFetcherContextType {
   query: string;
   setQuery: Dispatch<SetStateAction<string>>;
   loadMoreCelebrities: VoidFunction;
+  fetchCelebrities: VoidFunction;
 }
 
 export const CelebrityFetcherContext =
@@ -19,6 +20,7 @@ export const CelebrityFetcherContext =
     query: "",
     setQuery: () => {},
     loadMoreCelebrities: () => {},
+    fetchCelebrities: () => {},
   });
 
 interface Props {
@@ -26,8 +28,15 @@ interface Props {
 }
 
 const CelebrityFetcherProvider: React.FC<Props> = ({ children }) => {
-  const { celebrities, loading, error, query, setQuery, loadMoreCelebrities } =
-    useFetchDebouncedCelebrities();
+  const {
+    celebrities,
+    loading,
+    error,
+    query,
+    setQuery,
+    loadMoreCelebrities,
+    fetchCelebrities,
+  } = useFetchDebouncedCelebrities();
 
   return (
     <CelebrityFetcherContext.Provider
@@ -38,6 +47,7 @@ const CelebrityFetcherProvider: React.FC<Props> = ({ children }) => {
         query,
         setQuery,
         loadMoreCelebrities,
+        fetchCelebrities,
       }}
     >
       {children}
